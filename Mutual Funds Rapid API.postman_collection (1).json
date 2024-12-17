@@ -1,0 +1,117 @@
+{
+	"info": {
+		"_postman_id": "206bf9f5-1ce7-4fc7-8868-3a8ac43e5efa",
+		"name": "Mutual Funds Rapid API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "28765970"
+	},
+	"item": [
+		{
+			"name": "Register User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"gunalan\",\r\n    \"email\":\"gunalan@gmail.com\",\r\n    \"password\":\"guna@123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8000/auth/register"
+			},
+			"response": []
+		},
+		{
+			"name": "Login User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"gunalan@gmail.com\",\r\n    \"password\":\"guna@123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8000/auth/login"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Fund Schemes",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMiIsImVtYWlsIjoiZ3VuYWxhbkBnbWFpbC5jb20iLCJleHAiOjE3MzQ0NDUyNTZ9.ykcOJki2FUcF0SzCJVb_M4GcOn-H61xzbA_x8nHbt58"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/funds/get_open_schemes?scheme_name=Aditya Birla Sun Life Mutual Fund",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"funds",
+						"get_open_schemes"
+					],
+					"query": [
+						{
+							"key": "scheme_name",
+							"value": "Aditya Birla Sun Life Mutual Fund"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Purchase Fund",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMSIsImVtYWlsIjoiZ3VuYWxhbkBnbWFpbC5jb20iLCJleHAiOjE3MzQ0NTAyNDF9.LLAk3yZQLVnEySst6JDVbAtciuUUhoN2xxuj0ShN8Kg"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"isin\":\"INF209K01UR9\",\r\n    \"units\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8000/funds/invest"
+			},
+			"response": []
+		},
+		{
+			"name": "User Portfolio",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMSIsImVtYWlsIjoiZ3VuYWxhbkBnbWFpbC5jb20iLCJleHAiOjE3MzQ0NTAyNDF9.LLAk3yZQLVnEySst6JDVbAtciuUUhoN2xxuj0ShN8Kg"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8000/funds/portfolio"
+			},
+			"response": []
+		}
+	]
+}

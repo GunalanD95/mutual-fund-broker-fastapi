@@ -138,14 +138,13 @@ async def get_portfolio(
     portfolio_items = []
     for investment in investments:
         fund = db.query(Fund).filter(Fund.scheme_code == investment.scheme_code).first()
-        nav = fund.nav if fund else 0  
-        portfolio_items.append(
-            PortfolioItem(
-                scheme_code=investment.scheme_code,
-                scheme_name=investment.fund.scheme_name,
-                units=investment.units,
-                nav=nav
-            )
-        )
+        if not fund:
+            raise HTTPException(status_code=404, detail="Fund not found")
+        portfolio_items.append(PortfolioItem(
+            scheme_code=fund.scheme_code,
+            scheme_name=fund.scheme_name,
+            nav=fund.nav,
+            units=investment.units
+        ))
     return PortfolioResponse(user_id=user_id["user_id"], portfolio=portfolio_items)
 

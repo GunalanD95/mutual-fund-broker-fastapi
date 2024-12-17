@@ -20,11 +20,10 @@ def get_open_schmes(fund_family : str = None):
     if response.status_code != 200:
         print("error status_code:", response.status_code, "error message:", response.text)
         raise Exception("Error getting funds")
-    print(response.json())
     return response.json()
 
 def fetch_fund_details(isin: str):
-    URL = "https://latest-mutual-fund-nav.p.rapidapi.com/master"
+    URL = "https://latest-mutual-fund-nav.p.rapidapi.com/latest"
 
     querystring = {"ISIN": isin}
     headers = {
@@ -36,6 +35,7 @@ def fetch_fund_details(isin: str):
     if response.status_code != 200:
         print("error status_code:", response.status_code, "error message:", response.text)
         raise Exception("Error getting funds")
+    print("response:", response.json())
     return response.json()
 
 
