@@ -20,6 +20,7 @@ def get_open_schmes(fund_family : str = None):
     if response.status_code != 200:
         print("error status_code:", response.status_code, "error message:", response.text)
         raise Exception("Error getting funds")
+    print(response.json())
     return response.json()
 
 def fetch_fund_details(isin: str):
@@ -43,6 +44,7 @@ class NotEnoughUnitsError(Exception):
 
 def validate_fund_purchase(isin: str, units: int):
     fund_data = fetch_fund_details(isin)
+    print("fund_data:",fund_data)
     for fund in fund_data:
         if not fund.get("Purchase_Allowed"):
             raise ValueError("Purchase is not allowed for this fund")
